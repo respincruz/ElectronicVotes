@@ -1,0 +1,21 @@
+.bg, input:checked{
+    background-color: #ff0000!important;
+    color:#FFF !important;
+}
+/**/
+.c-font-label{
+    color:#ff0000 !important;
+}
+/**/
+.dashboard-nav ul li a:hover {
+    color: #ff0000!important;
+}
+/**/
+.dashboard-nav ul li.active, .dashboard-nav ul li:hover {
+    border-color: #ff0000!important;
+}
+/**/
+.tab-box-2 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    border-bottom-color: #ff214f!important;
+    color: #ff214f!important;
+}

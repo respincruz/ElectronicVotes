@@ -1,0 +1,55 @@
+///archivo javascript
+ var data = new FormData();
+ var array_archivos=[];
+ data.append('file[]',  $(this)[0].files[0]);
+ //console.log($("input[type=file].fileExcel")[0].files[0].name);
+ array_archivos.push({ "name_file":$(this)[0].files[0].name});
+ data.append("array_archivos",  JSON.stringify(array_archivos));
+
+$.ajax({ 
+            url: 'hub/filearchivos.php',  
+            type: 'POST', 
+            data: data,
+           
+          contentType: false, 
+          processData: false, 
+          dataType: retorno,
+          }).done(function(data){
+              if(data){
+                  alertas("Documento subido","success");
+              }
+            
+             
+          })
+
+///archivo para procesar la subida al servidor..... PHP
+$json_archivos=json_decode($_POST["array_archivos"]);
+
+
+
+$array_archivos=array();
+$filename = $_FILES['file']['name'][0]; 
+$location = "../files/".$filename; 
+$uploadOk = 1; 
+if($uploadOk == 0){ 
+    echo 0; 
+}else{ 
+
+if(move_uploaded_file($_FILES['file']['tmp_name'][0], $location)){ 
+                     $bytes = fread(fopen($location, "r"),$_FILES['file']['size'][0]);
+                     $stream = base64_encode(addslashes( $bytes ));
+                     $stream = base64_encode( $bytes );
+                     $file="data:image/png;base64,".$stream;
+                     ////aqui invocar a funcion para guardar foto a la base con la variable $file
+
+                     unlink($location);
+
+
+              //echo $location; 
+}else{ 
+echo 0; 
+} 
+    
+
+
+

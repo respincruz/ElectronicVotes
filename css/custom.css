@@ -1,0 +1,22 @@
+.bg, input:checked{
+background-color:#fec839!important;
+color:#861031!important;
+}
+/**/.c-font-label{
+color:#861031!important;
+}
+/**/.dashboard-nav ul li a:hover{
+color:#fec839!important;
+}
+/**/.tab-box-2 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+border-bottom-color:#fec839!important;
+}
+/**/.dashboard-nav ul li.active, .dashboard-nav ul li:hover{
+border-color:#fec839!important;}
+/**/.tab-box-2 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+color:#fec839!important;}
+/**/
+.buttons{
+	background-color:#861031!important;
+    color:#fec839!important;
+}

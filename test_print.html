@@ -1,0 +1,107 @@
+<div id="container">
+<style>.break-page {break-after: page;} .content {padding: 30px}
+.ql-align-center {
+  text-align:center;
+}
+.ql-align-left {
+  text-align:left;
+}
+.ql-align-right {
+  text-align:right;
+}
+.ql-editor {
+  font-family: sans-serif;
+  line-height: 2em;
+  font-size: 12px;
+}
+</style>
+<p>
+Page one
+</p>
+<span class="break-page"></span>
+<div class="content">
+
+<p>
+Content text example 
+content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example content text example.
+</p>
+<p>
+  Page two
+</p>
+<span class="break-page"></span>
+<p>
+  Page three
+</p>
+</div>
+
+</div>
+
+<button onclick="javascript:printPDF('arquivo-novo-3')" id="btn">
+generate PDF
+</button>
+
+ <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+<script type="text/javascript">
+  window.printPDF = function(name) {
+   // https: //jsfiddle.net/ivanferrer/3qoas824/21/#
+   //document.getElementsByTagName('img').src=check_img;
+   
+  
+        
+    var element = document.getElementById('container').innerHTML;
+    
+      
+    
+    
+     var opt = {
+                        margin:       [30, 0, 30, 0], //top, left, buttom, right
+                        filename:    name + '.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { dpi: 192, scale: 2, letterRendering: true},
+                        jsPDF:        { unit: 'pt', format: 'a4', orientation: 'portrait'},
+                        pageBreak: { mode: 'css', after:'.break-page'}
+                        };
+
+   
+    var worker = html2pdf()
+        .set(opt)
+        .from(element)
+        .toPdf()
+        .get('pdf')
+        .then(function(doc) {
+        
+       
+            var totalPages = doc.internal.getNumberOfPages();
+            
+         
+            for(var i = 1; i <= totalPages; i++ ) {   
+               
+                if (i == 1) {
+                    doc.setPage(i);
+  
+                    //doc.addImage('/img/logo.png', 'PNG', 0, 0, 600, 850);
+                     //  doc.setPage(i);
+                    doc.setFontType("bold");
+                    doc.text(330, 40, 'Matter: ');
+                    doc.setFontType("normal");
+                    doc.text(382, 40,  'No onno nono nononono');
+
+                    doc.setFontType("bold");
+                    doc.text(330, 60, 'Activity: ');
+                    doc.setFontType("normal");
+                    doc.text(392, 60, 'Nonnono onno nonono');
+                    doc.setFontSize(12);
+                    doc.setFontType("normal");
+                     doc.setPage(i);
+                   
+
+                }
+            }
+         
+
+
+        })
+
+        .save();
+}
+</script>
